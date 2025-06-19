@@ -6,6 +6,12 @@ import InputBox from "@/components/InputBox";
 import { Message, Session } from "@/types";
 import ChatArea from "@/components/ChartArea";
 
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
 export default function Home() {
   const [sessions, setSessions] = useState<Session[]>(() => {
     if (typeof window !== "undefined") {
@@ -22,6 +28,12 @@ export default function Home() {
   const activeSession = sessions.find((s) => s.id === activeSessionId);
 
   const handleSend = async () => {
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "send_button_click", {
+        event_category: "InputBox",
+        event_label: "Send button clicked",
+      });
+    }
     if (!input.trim()) return;
     const userMessage: Message = { role: "user", content: input };
     let currentSessionId = activeSessionId;
