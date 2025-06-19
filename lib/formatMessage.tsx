@@ -21,19 +21,23 @@ export function formatMessage(content: string) {
     } else if (line.startsWith("- Visit:")) {
       return (
         <p key={idx}>
-          <span className="font-semibold text-white">🗺️ Visit: </span>
+          <span className="font-light text-white">🗺️ Visit: </span>
           {line.replace("- Visit:", "").trim()}
         </p>
       );
     } else if (line.startsWith("- Eat:")) {
       return (
         <p key={idx}>
-          <span className="font-semibold text-white">🍽️ Eat: </span>
+          <span className="font-light text-white">🍽️ Eat: </span>
           {line.replace("- Eat:", "").trim()}
         </p>
       );
     } else {
-      return <p key={idx}>{line}</p>;
+      return (
+        <p key={idx} className="font-thin text-white">
+          {line}
+        </p>
+      );
     }
   });
 }

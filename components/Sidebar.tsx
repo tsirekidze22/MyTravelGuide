@@ -29,7 +29,7 @@ export default function Sidebar({
   `}
     >
       <button
-        className="md:hidden mb-4 text-white self-end text-xl"
+        className="md:hidden mb-4 text-white self-end text-xl cursor-pointer"
         onClick={() => setShowSidebar(false)}
       >
         ×
@@ -50,12 +50,13 @@ export default function Sidebar({
             key={session.id}
             className={`flex justify-between items-center p-2 rounded-lg transition duration-200 cursor-pointer ${
               session.id === activeSessionId
-                ? "bg-blue-600 text-white"
+                ? "bg-gray-700 text-white"
                 : "hover:bg-gray-700"
             }`}
             onClick={() => setActiveSessionId(session.id)}
           >
-            <span className="truncate w-40">{session.title}</span>
+            <span className="truncate w-40 capitalize">{session.title}</span>
+
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -64,7 +65,7 @@ export default function Sidebar({
                   setActiveSessionId(null);
                 }
               }}
-              className="text-white hover:text-red-500 transition duration-150 px-2 py-0.5 rounded-full hover:bg-gray-600"
+              className="cursor-pointer text-white hover:text-red-500 transition duration-150 px-2 py-0.5 rounded-full hover:bg-gray-600"
             >
               &times;
             </button>

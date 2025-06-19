@@ -96,7 +96,7 @@ export default function Home() {
   return (
     <main className="flex flex-col md:flex-row h-screen w-screen bg-[#212121] text-white">
       <button
-        className="md:hidden fixed top-4 text-xl left-4 z-50 bg-gray-800 text-white p-2 rounded"
+        className="md:hidden fixed top-4 text-xl left-4 z-50 bg-gray-800 text-white p-2 rounded cursor-pointer"
         onClick={() => setShowSidebar((prev) => !prev)}
       >
         ☰
@@ -114,10 +114,10 @@ export default function Home() {
 
       <section className="flex-1 flex flex-col items-center justify-center px-6">
         <header className="mb-4 text-center max-w-3xl">
-          <h1 className="text-5xl font-extrabold text-white">
+          <h1 className="text-4xl lg:text-5xl md:mt-0 font-normal text-white pt-3 ">
             Your Travel Guide
           </h1>
-          <p className="mt-3 text-xl text-gray-400">
+          <p className="mt-3 lg:text-xl text-gray-400">
             Ask me to plan your perfect day exploring cities around the world!
           </p>
         </header>

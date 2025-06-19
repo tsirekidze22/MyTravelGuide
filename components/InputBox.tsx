@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type InputBoxProps = {
   input: string;
   setInput: (val: string) => void;
@@ -13,7 +15,7 @@ export default function InputBox({
 }: InputBoxProps) {
   return (
     <div className="mt-6 w-full max-w-3xl border-t border-gray-700 bg-[#212121] p-4 rounded-xl">
-      <div className="flex gap-4">
+      <div className="flex items-center gap-4">
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -30,9 +32,15 @@ export default function InputBox({
         <button
           onClick={handleSend}
           disabled={isLoading}
-          className="px-6 py-3 cursor-pointer bg-blue-600 text-white rounded-xl hover:bg-blue-700 disabled:opacity-50"
+          className="p-3.5 cursor-pointer bg-white text-white rounded-full transition-all duration-200 hover:scale-105 hover:shadow-lg disabled:opacity-50"
+          style={{ height: 60, width: 60 }}
         >
-          Send
+          <Image
+            src={"/assets/icons/arrow-top.svg"}
+            width={70}
+            height={70}
+            alt="arrow-top"
+          />
         </button>
       </div>
     </div>
