@@ -2,42 +2,51 @@ export function formatMessage(content: string) {
   const lines = content.split("\n");
 
   return lines.map((line, idx) => {
+    const trimmed = line.trim();
+
+    // SECTION HEADERS
     if (
-      line.startsWith("Morning") ||
-      line.startsWith("Afternoon") ||
-      line.startsWith("Evening")
+      trimmed.startsWith("Morning") ||
+      trimmed.startsWith("Afternoon") ||
+      trimmed.startsWith("Evening")
     ) {
       let emoji = "";
-      if (line.startsWith("Morning")) emoji = "🌅 ";
-      else if (line.startsWith("Afternoon")) emoji = "☀️ ";
-      else if (line.startsWith("Evening")) emoji = "🌙 ";
+      if (trimmed.startsWith("Morning")) emoji = "🌅 ";
+      else if (trimmed.startsWith("Afternoon")) emoji = "☀️ ";
+      else if (trimmed.startsWith("Evening")) emoji = "🌙 ";
 
       return (
-        <p key={idx} className="mt-4 font-bold text-lg text-white">
+        <p key={idx} className="mt-6 font-bold text-lg text-white mb-2">
           {emoji}
-          {line.trim()}
-        </p>
-      );
-    } else if (line.startsWith("- Visit:")) {
-      return (
-        <p key={idx}>
-          <span className="font-light text-white">🗺️ Visit: </span>
-          {line.replace("- Visit:", "").trim()}
-        </p>
-      );
-    } else if (line.startsWith("- Eat:")) {
-      return (
-        <p key={idx}>
-          <span className="font-light text-white">🍽️ Eat: </span>
-          {line.replace("- Eat:", "").trim()}
-        </p>
-      );
-    } else {
-      return (
-        <p key={idx} className="font-thin text-white">
-          {line}
+          {trimmed}
         </p>
       );
     }
+
+    // SUBSECTION HEADINGS: Visit / Eat
+    if (trimmed.startsWith("🗺️ Visit:") || trimmed.startsWith("🍽️ Eat:")) {
+      return (
+        <p key={idx} className="mt-3 font-semibold text-white">
+          {trimmed}
+        </p>
+      );
+    }
+
+    // BULLET POINTS
+    if (trimmed.startsWith("•")) {
+      return (
+        <p key={idx} className="ml-6 text-white">
+          <span className="mr-2">•</span>
+          {trimmed.replace("•", "").trim()}
+        </p>
+      );
+    }
+
+    // FALLBACK
+    return (
+      <p key={idx} className="font-thin text-white">
+        {trimmed}
+      </p>
+    );
   });
 }

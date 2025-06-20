@@ -32,8 +32,12 @@ export default function InputBox({
         <button
           onClick={handleSend}
           disabled={isLoading}
-          className="p-3.5 cursor-pointer bg-white text-white rounded-full transition-all duration-200 hover:scale-105 hover:shadow-lg disabled:opacity-50"
-          style={{ height: 60, width: 60 }}
+          className="p-3.5 cursor-pointer rounded-full 
+            transition-all duration-200 disabled:opacity-50 button-3d"
+          style={{
+            height: 60,
+            width: 60,
+          }}
         >
           <Image
             src={"/assets/icons/arrow-top.svg"}
